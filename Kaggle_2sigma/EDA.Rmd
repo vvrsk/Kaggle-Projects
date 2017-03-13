@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ---
 title: "2 Sigma - RentHop EDA"
 author: "Sai Karthik Varanasi"
@@ -54,61 +53,4 @@ head(train.data,n = 1)
 ```{r}
 colnames(train.data)
 summary(train.data)
-=======
----
-title: "2 Sigma - RentHop EDA"
-author: "Sai Karthik Varanasi"
-date: "March 12, 2017"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-This is a document that describes the exploratory analysis of the data provided by 2 sigma for the Kaggle Competetion.
-
-For reproducability these are my system settings when I designed this program
-
-```{r echo = FALSE}
-print("System Info")
-Sys.info()
-
-print("Package Info")
-ip <- as.data.frame(installed.packages()[,c(1,3:4)])
-rownames(ip) <- NULL
-ip <- ip[is.na(ip$Priority),1:2,drop=FALSE]
-print(ip, row.names=FALSE)
-```
-
-Loading the Data:
-(Referred form the following [link](https://www.kaggle.com/danjordan/two-sigma-connect-rental-listing-inquiries/how-to-correctly-load-data-into-r) in the competetion which shows how to load the data effectively and correctly in R) as it was effective than my way.
-
-```{r}
-packages <- c("jsonlite", "dplyr", "purrr")
-purrr::walk(packages, library, character.only = TRUE, warn.conflicts = FALSE)
-
-train.data <- fromJSON("input/train.json")
-
-```
-
-
-```{r}
-# unlist every variable except `photos` and `features` and convert to tibble
-vars <- setdiff(names(train.data), c("photos", "features"))
-train.data <- map_at(train.data, vars, unlist) %>% tibble::as_tibble(.)
-```
-
-This completes the loading of the data into the dataset`train.data`
-
-Looking at the Loaded data, for analysis
-
-```{r}
-head(train.data,n = 1)
-```
-
-```{r}
-colnames(train.data)
-summary(train.data)
->>>>>>> 3bca7c470f8a032c311d145de8b7548faf42e0ae
 ```
